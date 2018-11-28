@@ -6,4 +6,6 @@
 //
 
 #include "proyecto.h"
-hola
+#include<stdio.h>
+#include<math.h>
+
