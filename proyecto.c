@@ -6,6 +6,7 @@
 //
 
 #include "proyecto.h"
+<<<<<<< HEAD
 int main ()
 {
     FILE *fs;
@@ -41,3 +42,8 @@ int main ()
     fclose(fp);
     return 0;
 }
+=======
+#include<stdio.h>
+#include<math.h>
+
+>>>>>>> master
