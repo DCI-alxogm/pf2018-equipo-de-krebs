@@ -72,6 +72,23 @@ int main()
 		printf("%f\t%f\t%f\n",xd2[i],yd2[i],zd2[i]);
 		
 	}
+    double r[nol];
+    
+    for (i=0; i<nol; i++)
+    {
+        r[i]=sqrt(pow(xd[i+1]-xd[i],2)+pow(yd[i+1]-yd[i],2)+pow(zd[i+1]-zd[i],2));
+        
+        printf("r[%d]= %f\n",i,r[i]);
+    }
+    
+    
+    double r_2[nol2];
+    for (i=0; i<nol2; i++)
+    {
+        r_2[i]=sqrt(pow(xd2[i+1]-xd2[i],2)+pow(yd2[i+1]-yd2[i],2)+pow(zd2[i+1]-zd2[i],2));
+        printf("r_2[%d]= %f\n",i,r_2[i]);
+    }
+    
 	fclose(fp2);
     fclose(fs2);
 
