@@ -6,40 +6,30 @@
 //
 
 #include "random.h"
+#define RAND_MAX        0x7fffffff
  int main ()
 {
     FILE *fp;
     fp=fopen("random.txt","w");
-    int x[100],i,y[10],z[10],m[10],n[10],l[10];
-   
-    for (i=0; i<10; i++)
-        
-    {
-        x[i]=rand()%91+10;
-        
-        fprintf(fp,"%i\t",x[i]);
-        y[i]=rand()%91+10;
-        fprintf(fp,"%i\t",y[i]);
-        z[i]=rand()%91+10;
-        fprintf(fp,"%i\n",z[i]);
-    }
-    FILE *fs;
-    fs=fopen("random2.txt","w");//imprimir dos archivos con numeros aleatorios
-   
+    int x;
+    float fr,ar,tr;
     
-    for (i=0; i<10; i++)
-        
+    srand((unsigned)time(NULL));
+    for(x=0;x<100;x++)
     {
-        m[i]=rand()%91+10;
-        
-        fprintf(fs,"%i\t",m[i]);
-        n[i]=rand()%91+10;
-        fprintf(fs,"%i\t",n[i]);
-        l[i]=rand()%91+10;
-        fprintf(fs,"%i\n",l[i]);
+        fr = (float)rand()/RAND_MAX;
+        ar=(float)rand()/RAND_MAX;
+        tr=(float)rand()/RAND_MAX;
+        fr*=100;
+        ar*=100;
+        tr*=100;
+        fprintf(fp,"%f\t",fr);
+        fprintf(fp,"%f\t",ar);
+        fprintf(fp,"%f\n",tr);
     }
+    
     fclose(fp);
-    fclose(fs);
+    
    
     
     
