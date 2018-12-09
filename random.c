@@ -10,7 +10,7 @@
 {
     FILE *fp;
     fp=fopen("random.txt","w");
-    int x[10],i,y[10],z[10],m[10],n[10],l[10];
+    int x[100],i,y[10],z[10],m[10],n[10],l[10];
    
     for (i=0; i<10; i++)
         
