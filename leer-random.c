@@ -1,5 +1,5 @@
-//Este codigo lee los archivos random y guarda sus datos en arreglos
-//Creado por Patricia Godinez el 5 de diciembre de 2018
+//Este codigo es el archivo de prueba para ver el funcionamiento del programa en el que se llevan a cabo todos los calculos necesarios utilizando dos archivos de datos random
+//Iniciado por Patricia Godinez el 5 de diciembre de 2018
 #include<stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -98,7 +98,7 @@ int main()
 
 //Calculando r
     double r[nol];
-    int dd=0,rr=0,dr=0;
+    float dd=0,rr=0,dr=0;
 
     for (i=0; i<nol; i++) //Aplicamos la un ciclo for para obtener r con los diferentes pares de coordenadas
     {
@@ -134,12 +134,32 @@ int main()
             dr++;
         }
     }
-    printf("Tus pares en la hoja de datos son=%d\n",dd); //obtenemos DD y RR
-    printf("Tus pares en la hoja de random son=%d\n",rr);
-    printf("Tus pares en la hoja de datos y random son=%d\n",dr);
-
+    //para tomar nd, nr y ndr
+    float nd, nr, ndr;
+    nd=nol;
+    nr=nol2;
+    ndr=nol_dr;
+    printf("Tus pares en la hoja de datos son=%f\n",dd); //obtenemos DD y RR
+    printf("Tus pares en la hoja de random son=%f\n",rr);
+    printf("Tus pares en la hoja de datos y random son=%f\n",dr);
+    printf("nd=%f\n",nd);
+    printf("nr=%f\n",nr);
+    printf("ndr=%f\n",ndr);
 	fclose(fp2);
     fclose(fs2);
+
+
+    //Calculando con estimador de Landy-Szalay
+    //Dividimos la ecuacion en pequeñas funciones, para facilitar su calculo
+    float est,pru1,pru2,pru3;
+    pru1=dd/nd;
+    pru2=(2*dr)/ndr;
+    pru3=rr/nr;
+    printf("%f\t%f\t%f\n",pru1,pru2,pru3);
+    est=((pru1)-(pru2)+(pru3))/(pru3);
+    printf("Tu estimador tiene un valor de= %f",est);
+
+
 
 
     return 0;
