@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
 	FILE *fp2;
 	FILE *fs2;
 
-	int nol=0,nw=0,nc=0; //nol es el numero de lineas que tenemos en el archivo 
+	int nol=0,nw=0,nc=0; //nol es el numero de lineas que tenemos en el archivo
 	char ch;
 //contador de lineas del archivo para poder leer solo los datos necesarios del archivo
     fs=fopen("random.txt","r");
@@ -23,8 +24,8 @@ int main()
             nol++;
         else
             nc++;
-        
-        
+
+
     }
 //leyendo el archivo random.txt para guardar las coordenadas en arreglos.
 	float xd[nol], yd[nol], zd[nol];
@@ -35,23 +36,22 @@ int main()
 		fscanf(fp,"%f	%f	%f",&xd[i],&yd[i],&zd[i]);
 		con++;
 		printf("%f\t%f\t%f\n",xd[i],yd[i],zd[i]);
-		
 	}
 	fclose(fp);
     fclose(fs);
 
 
 
-	printf("//////////////////////\n");//linea de separacion 
+	printf("//////////////////////\n");//linea de separacion
 
 
 
 
-	int nol2=0,nw2=0,nc2=0; //nol es el numero de lineas que tenemos en el archivo 
+	int nol2=0,nw2=0,nc2=0; //nol es el numero de lineas que tenemos en el archivo
 	char ch2;
 
 //contador de lineas del archivo para poder leer solo los datos necesarios del archivo
-    fs2=fopen("random2.txt","r"); 
+    fs2=fopen("random2.txt","r");
     while((ch2=fgetc(fs2))!=EOF)
     {
         if(ch2==' ')
@@ -60,11 +60,11 @@ int main()
             nol2++;
         else
             nc2++;
-        
-        
+
+
     }
 //leyendo el archivo random2.txt para guardar las coordenadas en arreglos.
-	float xd2[nol2], yd2[nol2], zd2[nol2];
+	float xd2[nol2], yd2[nol2], zd2[nol2],xdr2[nol2],ydr2[nol2],zdr2[nol2];
 	int j, con2=0;
 	fp2=fopen("random2.txt","r");
 	for(j=0;j<nol2;j++)
@@ -72,23 +72,46 @@ int main()
 		fscanf(fp2,"%f	%f	%f",&xd2[j],&yd2[j],&zd2[j]);
 		con2++;
 		printf("%f\t%f\t%f\n",xd2[j],yd2[j],zd2[j]);
-		
+
 	}
+	printf("///////////////\n");
+
+	//Calculando DR utilizando la funcion de memcpy de string.h
+    int nol_dr=nol + nol2;
+    float xdr[nol_dr], ydr[nol_dr], zdr[nol_dr];
+
+
+    memcpy(xdr,xd,sizeof(float) * nol);
+    memcpy(xdr+nol2,xd2,sizeof(float) *nol2);
+    memcpy(ydr,yd,sizeof(float) * nol);
+    memcpy(ydr+nol2,yd2,sizeof(float) *nol2);
+    memcpy(zdr,zd,sizeof(float) * nol);
+    memcpy(zdr+nol2,zd2,sizeof(float) *nol2);
+    unsigned short it=0;
+
+    for (;it<nol_dr;it++)
+    {
+        printf("%f\t%f\t%f\n",xdr[it],ydr[it],zdr[it]);
+    }
+
+    printf("/////////////\n");
+
+//Calculando r
     double r[nol];
-    int dd=0,rr=0;
-    
+    int dd=0,rr=0,dr=0;
+
     for (i=0; i<nol; i++) //Aplicamos la un ciclo for para obtener r con los diferentes pares de coordenadas
     {
         r[i]=sqrt(pow(xd[i+1]-xd[i],2)+pow(yd[i+1]-yd[i],2)+pow(zd[i+1]-zd[i],2));
-        
+
         printf("r[%d]= %f\n",i,r[i]);
         if(r[i]<=99)//Esta es la condición para que solo me cuente los datos que estan en el rango que yo puse
         {
             dd++;
         }
     }
-    
-    
+
+
     double r_2[nol2];
     for (i=0; i<nol2; i++)
     {
@@ -99,9 +122,22 @@ int main()
             rr++;
         }
     }
-    printf("Tus pares en la hoja de datos son=%d\n",dd); //obtenemos DD y RR 
+
+
+    double r_dr[nol_dr];
+    for (i=0; i<nol_dr; i++)
+    {
+        r_dr[i]=sqrt(pow(xdr[i+1]-xdr[i],2)+pow(ydr[i+1]-ydr[i],2)+pow(zdr[i+1]-zdr[i],2));
+        printf("r_dr[%d]= %f\n",i,r_dr[i]);
+        if(r_2[i]<=99)
+        {
+            dr++;
+        }
+    }
+    printf("Tus pares en la hoja de datos son=%d\n",dd); //obtenemos DD y RR
     printf("Tus pares en la hoja de random son=%d\n",rr);
-    
+    printf("Tus pares en la hoja de datos y random son=%d\n",dr);
+
 	fclose(fp2);
     fclose(fs2);
 
