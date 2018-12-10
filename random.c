@@ -15,7 +15,7 @@
     float fr,ar,tr;
     
     srand((unsigned)time(NULL));
-    for(x=0;x<100;x++)
+    for(x=0;x<1000;x++)
     {
         fr = (float)rand()/RAND_MAX;
         ar=(float)rand()/RAND_MAX;

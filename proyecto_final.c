@@ -100,7 +100,7 @@ int main ()
         memcpy(zdr+nol2,zr2,sizeof(float) *nol2);
         unsigned short it=0;
 
-        for (;it<nol_dr;it++)
+        for (it=0;it<nol_dr;it++)
         {
             printf("%f\t%f\t%f\n",xdr[it],ydr[it],zdr[it]);
         }
@@ -223,7 +223,7 @@ int main ()
         memcpy(zdr+nol2,zr2,sizeof(float) *nol2);
 
 
-        for (;it<nol_dr;it++)
+        for (it=0;it<nol_dr;it++)
         {
             printf("%f\t%f\t%f\n",xdr[it],ydr[it],zdr[it]);
         }
